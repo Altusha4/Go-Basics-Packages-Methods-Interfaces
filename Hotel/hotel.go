@@ -39,3 +39,13 @@ func (h *Hotel) CheckIn(number string) {
 	room.IsOccupied = true
 	h.Rooms[number] = room
 }
+
+func (h *Hotel) CheckOut(number string) {
+	room, exists := h.Rooms[number]
+	if !exists {
+		return
+	}
+
+	room.IsOccupied = false
+	h.Rooms[number] = room
+}
