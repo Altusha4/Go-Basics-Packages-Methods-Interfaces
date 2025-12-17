@@ -16,3 +16,12 @@ func NewHotel() *Hotel {
 		Rooms: make(map[string]Room),
 	}
 }
+
+func (h *Hotel) AddRoom(number string, roomType string, price float64) {
+	h.Rooms[number] = Room{
+		RoomNumber:    number,
+		Type:          roomType,
+		PricePerNight: price,
+		IsOccupied:    false,
+	}
+}
