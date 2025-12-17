@@ -10,3 +10,9 @@ type Room struct {
 type Hotel struct {
 	Rooms map[string]Room
 }
+
+func NewHotel() *Hotel {
+	return &Hotel{
+		Rooms: make(map[string]Room),
+	}
+}
