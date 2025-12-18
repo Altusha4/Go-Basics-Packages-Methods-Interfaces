@@ -52,3 +52,9 @@ func NewGym() *Gym {
 func (g *Gym) AddMember(id uint64, member Member) {
 	g.Members[id] = member
 }
+
+func (g *Gym) ListMembers() {
+	for id, member := range g.Members {
+		println("ID:", id, "-", member.GetDetails())
+	}
+}
