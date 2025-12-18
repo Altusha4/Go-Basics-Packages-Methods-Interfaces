@@ -24,3 +24,16 @@ func (w *Wallet) AddMoney(amount float64) {
 	w.Balance += amount
 	w.Transactions = append(w.Transactions, amount)
 }
+
+func (w *Wallet) SpendMoney(amount float64) {
+	if amount <= 0 {
+		return
+	}
+
+	if amount > w.Balance {
+		return
+	}
+
+	w.Balance -= amount
+	w.Transactions = append(w.Transactions, -amount)
+}
