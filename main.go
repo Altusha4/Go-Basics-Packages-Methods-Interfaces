@@ -45,7 +45,6 @@ Choose: `)
 	}
 }
 
-// Task 1: Hotel
 func demoHotel() {
 	fmt.Println("\n--- Task 1: Hotel ---")
 
@@ -57,7 +56,6 @@ func demoHotel() {
 	hotel.ListVacantRooms()
 }
 
-// Task 2: Employee
 func demoEmployee() {
 	fmt.Println("\n--- Task 2: Employee ---")
 
@@ -75,7 +73,6 @@ func demoEmployee() {
 	}
 }
 
-// Task 3: Gym
 func demoGym() {
 	fmt.Println("\n--- Task 3: Gym ---")
 
@@ -97,7 +94,6 @@ func demoGym() {
 	gym.ListMembers()
 }
 
-// Task 4: Wallet
 func demoWallet() {
 	fmt.Println("\n--- Task 4: Wallet ---")
 
@@ -109,6 +105,7 @@ Wallet Menu:
 1. Add money
 2. Spend money
 3. Show balance
+4. Show transactions
 0. Back
 Choose: `)
 
@@ -129,7 +126,10 @@ Choose: `)
 			w.SpendMoney(amount)
 
 		case 3:
-			fmt.Println("Balance:", w.GetBalance())
+			fmt.Printf("Balance: %.2f\n", w.GetBalance())
+
+		case 4:
+			w.ShowTransactions()
 
 		case 0:
 			return
@@ -140,7 +140,6 @@ Choose: `)
 	}
 }
 
-// Utility
 func wait() {
 	fmt.Print("\nPress Enter to continue...")
 	fmt.Scanln()
