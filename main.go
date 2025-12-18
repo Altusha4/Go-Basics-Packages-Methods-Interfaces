@@ -9,12 +9,35 @@ import (
 )
 
 func main() {
-	fmt.Println("=== Assignment 1 Demo ===")
+	for {
+		fmt.Print(`
+=== Menu ===
+1. Task 1: Hotel
+2. Task 2: Employee
+3. Task 3: Gym
+4. Task 4: Wallet
+0. Exit
+Choose: `)
 
-	demoHotel()
-	demoEmployee()
-	demoGym()
-	demoWallet()
+		var choice int
+		fmt.Scanln(&choice)
+
+		switch choice {
+		case 1:
+			demoHotel()
+		case 2:
+			demoEmployee()
+		case 3:
+			demoGym()
+		case 4:
+			demoWallet()
+		case 0:
+			fmt.Println("Goodbye!")
+			return
+		default:
+			fmt.Println("Invalid choice")
+		}
+	}
 }
 
 // Task 1: Hotel
@@ -34,22 +57,10 @@ func demoEmployee() {
 	fmt.Println("\n--- Task 2: Employee ---")
 
 	employees := []Employee.Employee{
-		Employee.FullTime{
-			MonthlySalary: 300000,
-			BonusRate:     0.1,
-		},
-		Employee.PartTime{
-			HourlyRate:  2000,
-			HoursWorked: 80,
-		},
-		Employee.Contractor{
-			ProjectRate:       50000,
-			ProjectsCompleted: 4,
-		},
-		Employee.Intern{
-			DailyRate:  8000,
-			DaysWorked: 22,
-		},
+		Employee.FullTime{MonthlySalary: 300000, BonusRate: 0.1},
+		Employee.PartTime{HourlyRate: 2000, HoursWorked: 80},
+		Employee.Contractor{ProjectRate: 50000, ProjectsCompleted: 4},
+		Employee.Intern{DailyRate: 8000, DaysWorked: 22},
 	}
 
 	for _, e := range employees {
@@ -85,9 +96,41 @@ func demoGym() {
 func demoWallet() {
 	fmt.Println("\n--- Task 4: Wallet ---")
 
-	wallet := Wallet.NewWallet()
-	wallet.AddMoney(100)
-	wallet.SpendMoney(30)
+	w := Wallet.NewWallet()
 
-	fmt.Println("Balance:", wallet.GetBalance())
+	for {
+		fmt.Print(`
+Wallet Menu:
+1. Add money
+2. Spend money
+3. Show balance
+0. Back
+Choose: `)
+
+		var choice int
+		fmt.Scanln(&choice)
+
+		switch choice {
+		case 1:
+			var amount float64
+			fmt.Print("Amount: ")
+			fmt.Scanln(&amount)
+			w.AddMoney(amount)
+
+		case 2:
+			var amount float64
+			fmt.Print("Amount: ")
+			fmt.Scanln(&amount)
+			w.SpendMoney(amount)
+
+		case 3:
+			fmt.Println("Balance:", w.GetBalance())
+
+		case 0:
+			return
+
+		default:
+			fmt.Println("Invalid choice")
+		}
+	}
 }
