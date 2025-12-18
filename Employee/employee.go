@@ -14,3 +14,8 @@ type PartTime struct {
 	HourlyRate  float64
 	HoursWorked int
 }
+
+type Contractor struct {
+	ProjectRate       float64
+	ProjectsCompleted int
+}
