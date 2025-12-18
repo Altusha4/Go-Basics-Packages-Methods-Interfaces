@@ -15,3 +15,12 @@ func NewWallet() *Wallet {
 func (w *Wallet) GetBalance() float64 {
 	return w.Balance
 }
+
+func (w *Wallet) AddMoney(amount float64) {
+	if amount <= 0 {
+		return
+	}
+
+	w.Balance += amount
+	w.Transactions = append(w.Transactions, amount)
+}
