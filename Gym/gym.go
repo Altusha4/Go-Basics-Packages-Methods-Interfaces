@@ -48,3 +48,7 @@ func NewGym() *Gym {
 		Members: make(map[uint64]Member),
 	}
 }
+
+func (g *Gym) AddMember(id uint64, member Member) {
+	g.Members[id] = member
+}
