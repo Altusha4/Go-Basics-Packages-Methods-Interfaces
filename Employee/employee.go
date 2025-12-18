@@ -19,3 +19,8 @@ type Contractor struct {
 	ProjectRate       float64
 	ProjectsCompleted int
 }
+
+type Intern struct {
+	DailyRate  float64
+	DaysWorked int
+}
