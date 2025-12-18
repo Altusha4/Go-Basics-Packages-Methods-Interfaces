@@ -1,27 +1,47 @@
 package main
 
 import (
-	"Assignment1/Gym"
+	"Assignment1/Wallet"
+	"fmt"
 )
 
 func main() {
-	gym := Gym.NewGym()
+	w := Wallet.NewWallet()
 
-	basic := Gym.BasicMember{
-		Name:   "Alex",
-		Plan:   "Basic",
-		Active: true,
+	for {
+		fmt.Print(`
+=== Wallet Menu ===
+1. Add money
+2. Spend money
+3. Show balance
+0. Exit
+Choose: `)
+
+		var choice int
+		fmt.Scanln(&choice)
+
+		switch choice {
+		case 1:
+			var amount float64
+			fmt.Print("Amount to add: ")
+			fmt.Scanln(&amount)
+			w.AddMoney(amount)
+
+		case 2:
+			var amount float64
+			fmt.Print("Amount to spend: ")
+			fmt.Scanln(&amount)
+			w.SpendMoney(amount)
+
+		case 3:
+			fmt.Println("Current balance:", w.GetBalance())
+
+		case 0:
+			fmt.Println("Bye!")
+			return
+
+		default:
+			fmt.Println("Invalid choice")
+		}
 	}
-
-	premium := Gym.PremiumMember{
-		Name:            "Maria",
-		Plan:            "Premium",
-		Active:          true,
-		PersonalTrainer: true,
-	}
-
-	gym.AddMember(1, basic)
-	gym.AddMember(2, premium)
-
-	gym.ListMembers()
 }
