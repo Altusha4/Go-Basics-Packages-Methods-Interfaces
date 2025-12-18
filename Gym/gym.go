@@ -42,3 +42,9 @@ func (p PremiumMember) GetDetails() string {
 type Gym struct {
 	Members map[uint64]Member
 }
+
+func NewGym() *Gym {
+	return &Gym{
+		Members: make(map[uint64]Member),
+	}
+}
