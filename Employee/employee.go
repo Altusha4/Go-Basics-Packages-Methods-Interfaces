@@ -63,3 +63,18 @@ func (c Contractor) CalculateBonus() float64 {
 func (c Contractor) GetWorkHours() int {
 	return c.ProjectsCompleted * 40
 }
+
+func (i Intern) CalculateSalary() float64 {
+	return float64(i.DaysWorked) * i.DailyRate
+}
+
+func (i Intern) CalculateBonus() float64 {
+	if i.DaysWorked > 20 {
+		return i.DailyRate * 2
+	}
+	return 0
+}
+
+func (i Intern) GetWorkHours() int {
+	return i.DaysWorked * 8
+}
