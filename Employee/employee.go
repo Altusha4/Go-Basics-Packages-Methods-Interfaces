@@ -48,3 +48,18 @@ func (p PartTime) CalculateBonus() float64 {
 func (p PartTime) GetWorkHours() int {
 	return p.HoursWorked
 }
+
+func (c Contractor) CalculateSalary() float64 {
+	return float64(c.ProjectsCompleted) * c.ProjectRate
+}
+
+func (c Contractor) CalculateBonus() float64 {
+	if c.ProjectsCompleted > 3 {
+		return c.ProjectRate * 0.1
+	}
+	return 0
+}
+
+func (c Contractor) GetWorkHours() int {
+	return c.ProjectsCompleted * 40
+}
