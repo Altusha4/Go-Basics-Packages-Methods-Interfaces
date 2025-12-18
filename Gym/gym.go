@@ -38,3 +38,7 @@ func (p PremiumMember) GetDetails() string {
 
 	return "Premium Member: " + p.Name + ", status: " + status + ", " + trainer
 }
+
+type Gym struct {
+	Members map[uint64]Member
+}
