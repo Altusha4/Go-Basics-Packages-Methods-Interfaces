@@ -24,3 +24,15 @@ type Intern struct {
 	DailyRate  float64
 	DaysWorked int
 }
+
+func (f FullTime) CalculateSalary() float64 {
+	return f.MonthlySalary + f.CalculateBonus()
+}
+
+func (f FullTime) CalculateBonus() float64 {
+	return f.MonthlySalary * f.BonusRate
+}
+
+func (f FullTime) GetWorkHours() int {
+	return 160
+}
