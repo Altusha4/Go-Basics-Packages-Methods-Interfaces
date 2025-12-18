@@ -1,5 +1,7 @@
 package Gym
 
+import "fmt"
+
 type Member interface {
 	GetDetails() string
 }
@@ -55,6 +57,6 @@ func (g *Gym) AddMember(id uint64, member Member) {
 
 func (g *Gym) ListMembers() {
 	for id, member := range g.Members {
-		println("ID:", id, "-", member.GetDetails())
+		fmt.Println("ID:", id, "-", member.GetDetails())
 	}
 }
