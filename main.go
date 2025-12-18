@@ -1,33 +1,27 @@
 package main
 
 import (
-	"Assignment1/Employee"
-	"fmt"
+	"Assignment1/Gym"
 )
 
 func main() {
-	employees := []Employee.Employee{
-		Employee.FullTime{
-			MonthlySalary: 300000,
-			BonusRate:     0.1,
-		},
-		Employee.PartTime{
-			HourlyRate:  2000,
-			HoursWorked: 80,
-		},
-		Employee.Contractor{
-			ProjectRate:       50000,
-			ProjectsCompleted: 4,
-		},
-		Employee.Intern{
-			DailyRate:  8000,
-			DaysWorked: 22,
-		},
+	gym := Gym.NewGym()
+
+	basic := Gym.BasicMember{
+		Name:   "Alex",
+		Plan:   "Basic",
+		Active: true,
 	}
 
-	for _, e := range employees {
-		fmt.Println("Salary:", e.CalculateSalary())
-		fmt.Println("Work hours:", e.GetWorkHours())
-		fmt.Println("---")
+	premium := Gym.PremiumMember{
+		Name:            "Maria",
+		Plan:            "Premium",
+		Active:          true,
+		PersonalTrainer: true,
 	}
+
+	gym.AddMember(1, basic)
+	gym.AddMember(2, premium)
+
+	gym.ListMembers()
 }
