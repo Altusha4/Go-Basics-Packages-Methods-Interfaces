@@ -1,16 +1,20 @@
 package main
 
 import (
-	"Assignment1/Hotel"
+	"Assignment1/Employee"
+	"fmt"
 )
 
 func main() {
-	hotel := Hotel.NewHotel()
+	employees := []Employee.Employee{
+		Employee.FullTime{
+			MonthlySalary: 300000,
+			BonusRate:     0.1,
+		},
+	}
 
-	hotel.AddRoom("101", "Single", 100)
-	hotel.AddRoom("102", "Double", 150)
-
-	hotel.CheckIn("101")
-
-	hotel.ListVacantRooms()
+	for _, e := range employees {
+		fmt.Println("Salary:", e.CalculateSalary())
+		fmt.Println("Work hours:", e.GetWorkHours())
+	}
 }
