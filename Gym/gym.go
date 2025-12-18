@@ -24,3 +24,17 @@ func (b BasicMember) GetDetails() string {
 	}
 	return "Basic Member: " + b.Name + ", status: " + status
 }
+
+func (p PremiumMember) GetDetails() string {
+	status := "inactive"
+	if p.Active {
+		status = "active"
+	}
+
+	trainer := "no personal trainer"
+	if p.PersonalTrainer {
+		trainer = "with personal trainer"
+	}
+
+	return "Premium Member: " + p.Name + ", status: " + status + ", " + trainer
+}
