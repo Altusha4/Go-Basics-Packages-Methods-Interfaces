@@ -49,3 +49,10 @@ func (h *Hotel) CheckOut(number string) {
 	room.IsOccupied = false
 	h.Rooms[number] = room
 }
+func (h *Hotel) ListVacantRooms() {
+	for _, room := range h.Rooms {
+		if !room.IsOccupied {
+			println(room.RoomNumber, room.Type, room.PricePerNight)
+		}
+	}
+}
