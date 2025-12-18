@@ -1,11 +1,12 @@
 package main
 
 import (
+	"fmt"
+
 	"Assignment1/Employee"
 	"Assignment1/Gym"
 	"Assignment1/Hotel"
 	"Assignment1/Wallet"
-	"fmt"
 )
 
 func main() {
@@ -25,12 +26,16 @@ Choose: `)
 		switch choice {
 		case 1:
 			demoHotel()
+			wait()
 		case 2:
 			demoEmployee()
+			wait()
 		case 3:
 			demoGym()
+			wait()
 		case 4:
 			demoWallet()
+			wait()
 		case 0:
 			fmt.Println("Goodbye!")
 			return
@@ -63,10 +68,10 @@ func demoEmployee() {
 		Employee.Intern{DailyRate: 8000, DaysWorked: 22},
 	}
 
-	for _, e := range employees {
-		fmt.Println("Salary:", e.CalculateSalary())
-		fmt.Println("Work hours:", e.GetWorkHours())
-		fmt.Println("---")
+	for i, e := range employees {
+		fmt.Println("Employee", i+1)
+		fmt.Println("  Salary:", e.CalculateSalary())
+		fmt.Println("  Work hours:", e.GetWorkHours())
 	}
 }
 
@@ -113,13 +118,13 @@ Choose: `)
 		switch choice {
 		case 1:
 			var amount float64
-			fmt.Print("Amount: ")
+			fmt.Print("Amount to add: ")
 			fmt.Scanln(&amount)
 			w.AddMoney(amount)
 
 		case 2:
 			var amount float64
-			fmt.Print("Amount: ")
+			fmt.Print("Amount to spend: ")
 			fmt.Scanln(&amount)
 			w.SpendMoney(amount)
 
@@ -133,4 +138,10 @@ Choose: `)
 			fmt.Println("Invalid choice")
 		}
 	}
+}
+
+// Utility
+func wait() {
+	fmt.Print("\nPress Enter to continue...")
+	fmt.Scanln()
 }
