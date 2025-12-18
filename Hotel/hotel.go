@@ -1,5 +1,7 @@
 package Hotel
 
+import "fmt"
+
 type Room struct {
 	RoomNumber    string
 	Type          string
@@ -49,10 +51,17 @@ func (h *Hotel) CheckOut(number string) {
 	room.IsOccupied = false
 	h.Rooms[number] = room
 }
+
 func (h *Hotel) ListVacantRooms() {
+	fmt.Println("Vacant rooms:")
 	for _, room := range h.Rooms {
 		if !room.IsOccupied {
-			println(room.RoomNumber, room.Type, room.PricePerNight)
+			fmt.Printf(
+				"Room %s | Type: %s | Price: %.2f\n",
+				room.RoomNumber,
+				room.Type,
+				room.PricePerNight,
+			)
 		}
 	}
 }
