@@ -11,3 +11,7 @@ func NewWallet() *Wallet {
 		Transactions: []float64{},
 	}
 }
+
+func (w *Wallet) GetBalance() float64 {
+	return w.Balance
+}
