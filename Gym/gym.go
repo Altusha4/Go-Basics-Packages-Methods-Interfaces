@@ -8,37 +8,32 @@ type Member interface {
 
 type BasicMember struct {
 	Name   string
-	Plan   string
 	Active bool
 }
 
 type PremiumMember struct {
 	Name            string
-	Plan            string
 	Active          bool
 	PersonalTrainer bool
 }
 
 func (b BasicMember) GetDetails() string {
-	status := "inactive"
 	if b.Active {
-		status = "active"
+		return "Basic Member: " + b.Name + " (active)"
 	}
-	return "Basic Member: " + b.Name + ", status: " + status
+	return "Basic Member: " + b.Name + " (inactive)"
 }
 
 func (p PremiumMember) GetDetails() string {
-	status := "inactive"
-	if p.Active {
-		status = "active"
-	}
-
-	trainer := "no personal trainer"
+	trainer := ""
 	if p.PersonalTrainer {
-		trainer = "with personal trainer"
+		trainer = " with trainer"
 	}
 
-	return "Premium Member: " + p.Name + ", status: " + status + ", " + trainer
+	if p.Active {
+		return "Premium Member: " + p.Name + " (active)" + trainer
+	}
+	return "Premium Member: " + p.Name + " (inactive)" + trainer
 }
 
 type Gym struct {
@@ -46,17 +41,15 @@ type Gym struct {
 }
 
 func NewGym() *Gym {
-	return &Gym{
-		Members: make(map[uint64]Member),
-	}
+	return &Gym{Members: map[uint64]Member{}}
 }
 
-func (g *Gym) AddMember(id uint64, member Member) {
-	g.Members[id] = member
+func (g *Gym) AddMember(id uint64, m Member) {
+	g.Members[id] = m
 }
 
 func (g *Gym) ListMembers() {
-	for id, member := range g.Members {
-		fmt.Println("ID:", id, "-", member.GetDetails())
+	for id, m := range g.Members {
+		fmt.Println(id, "-", m.GetDetails())
 	}
 }
