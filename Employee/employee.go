@@ -6,31 +6,27 @@ type Employee interface {
 }
 
 type FullTime struct {
-	MonthlySalary float64
-	BonusRate     float64
+	Salary float64
+	Bonus  float64
 }
 
 type PartTime struct {
-	HourlyRate  float64
-	HoursWorked int
+	Rate  float64
+	Hours int
 }
 
 type Contractor struct {
-	ProjectRate       float64
-	ProjectsCompleted int
+	Rate     float64
+	Projects int
 }
 
 type Intern struct {
-	DailyRate  float64
-	DaysWorked int
+	Rate float64
+	Days int
 }
 
 func (f FullTime) CalculateSalary() float64 {
-	return f.MonthlySalary + f.CalculateBonus()
-}
-
-func (f FullTime) CalculateBonus() float64 {
-	return f.MonthlySalary * f.BonusRate
+	return f.Salary + f.Salary*f.Bonus
 }
 
 func (f FullTime) GetWorkHours() int {
@@ -38,43 +34,25 @@ func (f FullTime) GetWorkHours() int {
 }
 
 func (p PartTime) CalculateSalary() float64 {
-	return float64(p.HoursWorked) * p.HourlyRate
-}
-
-func (p PartTime) CalculateBonus() float64 {
-	return 0
+	return float64(p.Hours) * p.Rate
 }
 
 func (p PartTime) GetWorkHours() int {
-	return p.HoursWorked
+	return p.Hours
 }
 
 func (c Contractor) CalculateSalary() float64 {
-	return float64(c.ProjectsCompleted) * c.ProjectRate
-}
-
-func (c Contractor) CalculateBonus() float64 {
-	if c.ProjectsCompleted > 3 {
-		return c.ProjectRate * 0.1
-	}
-	return 0
+	return float64(c.Projects) * c.Rate
 }
 
 func (c Contractor) GetWorkHours() int {
-	return c.ProjectsCompleted * 40
+	return c.Projects * 40
 }
 
 func (i Intern) CalculateSalary() float64 {
-	return float64(i.DaysWorked) * i.DailyRate
-}
-
-func (i Intern) CalculateBonus() float64 {
-	if i.DaysWorked > 20 {
-		return i.DailyRate * 2
-	}
-	return 0
+	return float64(i.Days) * i.Rate
 }
 
 func (i Intern) GetWorkHours() int {
-	return i.DaysWorked * 8
+	return i.Days * 8
 }
