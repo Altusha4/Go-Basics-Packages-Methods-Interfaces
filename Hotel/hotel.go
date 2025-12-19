@@ -3,10 +3,10 @@ package Hotel
 import "fmt"
 
 type Room struct {
-	RoomNumber    string
-	Type          string
-	PricePerNight float64
-	IsOccupied    bool
+	Number string
+	Type   string
+	Price  float64
+	Busy   bool
 }
 
 type Hotel struct {
@@ -14,54 +14,34 @@ type Hotel struct {
 }
 
 func NewHotel() *Hotel {
-	return &Hotel{
-		Rooms: make(map[string]Room),
-	}
+	return &Hotel{Rooms: map[string]Room{}}
 }
 
-func (h *Hotel) AddRoom(number string, roomType string, price float64) {
+func (h *Hotel) AddRoom(number, roomType string, price float64) {
 	h.Rooms[number] = Room{
-		RoomNumber:    number,
-		Type:          roomType,
-		PricePerNight: price,
-		IsOccupied:    false,
+		Number: number,
+		Type:   roomType,
+		Price:  price,
 	}
 }
 
 func (h *Hotel) CheckIn(number string) {
-	room, exists := h.Rooms[number]
-	if !exists {
-		return
-	}
-
-	if room.IsOccupied {
-		return
-	}
-
-	room.IsOccupied = true
+	room := h.Rooms[number]
+	room.Busy = true
 	h.Rooms[number] = room
 }
 
 func (h *Hotel) CheckOut(number string) {
-	room, exists := h.Rooms[number]
-	if !exists {
-		return
-	}
-
-	room.IsOccupied = false
+	room := h.Rooms[number]
+	room.Busy = false
 	h.Rooms[number] = room
 }
 
 func (h *Hotel) ListVacantRooms() {
 	fmt.Println("Vacant rooms:")
-	for _, room := range h.Rooms {
-		if !room.IsOccupied {
-			fmt.Printf(
-				"Room %s | Type: %s | Price: %.2f\n",
-				room.RoomNumber,
-				room.Type,
-				room.PricePerNight,
-			)
+	for _, r := range h.Rooms {
+		if !r.Busy {
+			fmt.Printf("Room %s | %s | %.2f\n", r.Number, r.Type, r.Price)
 		}
 	}
 }
