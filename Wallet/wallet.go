@@ -8,43 +8,29 @@ type Wallet struct {
 }
 
 func NewWallet() *Wallet {
-	return &Wallet{
-		Balance:      0,
-		Transactions: []float64{},
-	}
-}
-
-func (w *Wallet) GetBalance() float64 {
-	return w.Balance
+	return &Wallet{}
 }
 
 func (w *Wallet) AddMoney(amount float64) {
-	if amount <= 0 {
-		return
-	}
 	w.Balance += amount
 	w.Transactions = append(w.Transactions, amount)
 }
 
 func (w *Wallet) SpendMoney(amount float64) {
-	if amount <= 0 {
-		return
-	}
 	if amount > w.Balance {
+		fmt.Println("Not enough money")
 		return
 	}
 	w.Balance -= amount
 	w.Transactions = append(w.Transactions, -amount)
 }
 
-func (w *Wallet) ShowTransactions() {
-	if len(w.Transactions) == 0 {
-		fmt.Println("No transactions yet")
-		return
-	}
+func (w *Wallet) GetBalance() float64 {
+	return w.Balance
+}
 
-	fmt.Println("Transactions:")
-	for i, t := range w.Transactions {
-		fmt.Printf("%d) %.2f\n", i+1, t)
+func (w *Wallet) ShowTransactions() {
+	for _, t := range w.Transactions {
+		fmt.Println(t)
 	}
 }
